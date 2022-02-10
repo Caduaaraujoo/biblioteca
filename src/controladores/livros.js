@@ -108,12 +108,26 @@ const atualizarLivro = (req, res) => {
             mensagem:'Não existe livro a ser alterado para o ID informado.'
         })
     }
+    if(!titulo && !autor && !ano && !numPaginas){
+        return res.status(400).json({
+            "mensagem": "É necessario ao menos preencher um campo, para atualização"
+        })
+    }
 
-    if(titulo || autor || ano || numPaginas){
+    if(titulo){
         atualizar.titulo = titulo;
+    }
+
+    if(autor){
         atualizar.autor = autor;
+    }
+
+    if(ano){
         atualizar.ano = ano;
-        atualizar.numPaginas = numPaginas
+    }
+
+    if(numPaginas){
+        atualizar.numPaginas = numPaginas;
     }
 
     return res.status(200).json({
