@@ -32,10 +32,17 @@ const consultarLivroId = (req, res) => {
 const addLivro = (req, res) => {
     const {titulo, autor, ano, numPaginas} = req.body;
 
-    let i = livros.length;
+    const arrayIndice = [];
+
+    for(const livro of livros){
+       
+       arrayIndice.push(livro.id);
+    }
+    const maiorIndice = Math.max(...arrayIndice);
+   
 
     const novoLivro = {
-        id: i+1,
+        id: maiorIndice+1,
         titulo,
         autor,
         ano,
